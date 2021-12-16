@@ -231,10 +231,16 @@ body.dark-theme {
   display: inline-flex;
   align-items: center;
   column-gap: 0.25rem;
+  /* background-color: yellowgreen; */
+  /* padding-left: 10px; */
 }
 
 .nav__logo-icon {
-  font-size: 1.25rem;
+  padding-right: 10px;
+}
+.nav__logo-icon img{
+  width: 23px;
+  height: 23px;
 }
 
 .nav__btns {
