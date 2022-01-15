@@ -185,6 +185,7 @@ body.dark-theme {
   text-transform: uppercase;
   letter-spacing: 2px;
   text-align: center;
+  margin-top: 14%;
 }
 
 .section__title::before {
@@ -959,7 +960,12 @@ button:hover i {
 
 @media screen and (max-width: 320px) {
   .filter input {
-    width: 100%;
+    padding: 8px 10px;
+    margin-right: 31px;
+  }
+
+  .filter .bx-search-alt {
+    display: none;
   }
 
   .section_div {
@@ -978,7 +984,7 @@ button:hover i {
 
   .products__container {
     grid-template-columns: repeat(1, 180px);
-    justify-content: cente;
+    justify-content: center;
   }
 }
 
@@ -1150,7 +1156,7 @@ button:hover i {
     padding-top: 4%;
     /* background-color: red; */
   }
-  
+
   .filter input {
     width: 80%;
     margin-left: 30px;

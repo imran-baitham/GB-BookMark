@@ -403,7 +403,8 @@ body.dark-theme {
 }
 
 .button--gray:hover {
-  background-color: hsl(0, 0%, 63%);
+  /* background-color: hsl(0, 0%, 63%); */
+  background-color: var(--first-color);
 }
 
 .button--small {
@@ -982,8 +983,7 @@ video {
   justify-content: space-between;
 }
 
-.cart__prices-item,
-.cart__prices-total {
+.cart__prices-item {
   color: var(--title-color);
 }
 
@@ -992,8 +992,9 @@ video {
 }
 
 .cart__prices-total {
-  font-size: var(--h3-font-size);
-  font-weight: var(--font-medium);
+  /* font-size: var(--h3-font-size); */
+  /* font-weight: var(--font-medium); */
+  /* border: 1px solid var(--button-color-alt); */
 }
 
 /* Show cart */

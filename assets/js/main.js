@@ -24,7 +24,7 @@ const navLink = document.querySelectorAll('.nav__link')
 
 function linkAction() {
     const navMenu = document.getElementById('nav-menu')
-        // When we click on each nav__link, we remove the show-menu class
+    // When we click on each nav__link, we remove the show-menu class
     navMenu.classList.remove('show-menu')
 }
 navLink.forEach(n => n.addEventListener('click', linkAction))
@@ -32,7 +32,7 @@ navLink.forEach(n => n.addEventListener('click', linkAction))
 /*=============== CHANGE BACKGROUND HEADER ===============*/
 function scrollHeader() {
     const header = document.getElementById('header')
-        // When the scroll is greater than 50 viewport height, add the scroll-header class to the header tag
+    // When the scroll is greater than 50 viewport height, add the scroll-header class to the header tag
     if (this.scrollY >= 50) header.classList.add('scroll-header');
     else header.classList.remove('scroll-header')
 }
@@ -53,17 +53,10 @@ let testimonialSwiper = new Swiper(".testimonial-swiper", {
 let newSwiper = new Swiper(".new-swiper", {
     spaceBetween: 24,
     loop: 'true',
-    // slidesPerView: "auto",
-    // centeredSlides: true,
     pagination: {
         el: ".swiper-pagination",
         dynamicBullets: true,
     },
-    // breakpoints: {
-    //     992: {
-    //         spaceBetween: 80,
-    //     },
-    // },
     breakpoints: {
         576: {
             slidesPerView: 2,
@@ -76,25 +69,6 @@ let newSwiper = new Swiper(".new-swiper", {
         },
     },
 });
-
-// ==============================================
-// let newSwiper = new Swiper(".new-swiper", {
-//     spaceBetween: 20,
-//     loop: 'true',
-//     slidesPerView: "auto",
-//     centeredSlides: true,
-
-//     pagination: {
-//         el: ".swiper-pagination",
-//         dynamicBullets: true,
-//     },
-//     breakpoints: {
-//         992: {
-//             spaceBetween: 80,
-//         },
-//     },
-// });
-
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 const sections = document.querySelectorAll('section[id]')
@@ -171,7 +145,120 @@ themeButton.addEventListener('click', () => {
     // Add or remove the dark / icon theme
     document.body.classList.toggle(darkTheme)
     themeButton.classList.toggle(iconTheme)
-        // We save the theme and the current icon that the user chose
+    // We save the theme and the current icon that the user chose
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
+// =======================================
+
+// let deleteBtn = document.querySelectorAll(".bx-trash-alt")
+// deleteBtn.forEach((x) => {
+//     x.addEventListener("click", (x) => {
+//         console.log("delete")
+//         document.querySelector(".cart__card").style.display = "none"
+//     })
+// })
+
+
+const booktore = {
+    state: {
+        posts: [
+            {
+                id: 1,
+                bookName: "Jazzmaster",
+                url: "assets/img/bookimg/img-06.jpg",
+                prise: "$100",
+                number: "5",
+                caption: "mybecome ineer.",
+                like: 0,
+                islike: false,
+            },
+            {
+                id: 2,
+                bookName: "Rose Gold",
+                url: "assets/img/bookimg/img-07.jpg",
+                prise: "$50",
+                number: "1",
+                caption: "mybecome ineer.",
+                like: 0,
+                islike: false,
+            },
+            {
+                id: 3,
+                bookName: "Longines Rose",
+                url: "assets/img/bookimg/img-08.jpg",
+                prise: "$10",
+                caption: "mybecome ineer.",
+                number: "2",
+                like: 0,
+                islike: false,
+            },
+        ],
+    },
+    handleAddLike(id) {
+        const { state: { posts } } = booktore
+        let books = posts.find((x) => {
+            return x.id === id
+        })
+        console.log(books)
+        posts.splice(books, 1)
+        document.querySelector(".cart__card").style.display = "none"
+        document.querySelector(".cart__prices-item").innerHTML = "2 items"
+
+        // displayNone.forEach((x) => {
+        //     // const item = x.firstChild.textContent;
+        //     if (posts.indexOf(books) != -1) {
+        //         x.parentElement.style.display = "none"
+        //     } else {
+        //         x.parentElement.style.display = "none"
+        //     }
+        // })
+
+    },
+    increse(e) {
+        let number = Math.floor(Math.random() * 10)
+        document.querySelector(".cart__amount-number").innerHTML = number
+    },
+    decrese() {
+        let number = Math.floor(Math.random() * 10 - 10)
+        document.querySelector(".cart__amount-number").innerHTML = number
+    },
+
+    randerPost(x) {
+        return `
+        <article class="cart__card">
+        <div class="cart__box">
+              <img src="${x.url}" alt="" class="cart__img">
+        </div>
+
+       <div class="cart__details">
+         <h3 class="cart__title">${x.bookName}</h3>
+         <span class="cart__price">${x.prise}</span>
+
+         <div class="cart__amount">
+             <div class="cart__amount-content">
+                 <span class="cart__amount-box" onclick="booktore.decrese()">
+                     <i class='bx bx-minus'></i>
+                 </span>
+
+                 <span class="cart__amount-number">${x.number}</span>
+
+                 <span class="cart__amount-box" onclick="booktore.increse(event)">
+                     <i class='bx bx-plus'></i>
+                 </span>
+             </div>
+
+             <i class='bx bx-trash-alt cart__amount-trash' onclick="booktore.handleAddLike(${x.id})"></i>
+         </div>
+     </div>
+     </article>
+         `
+    },
+    rander() {
+        const { state: { posts }, randerPost } = booktore
+        let root = document.querySelector(".cart__container")
+        root.innerHTML = posts.map((x) => randerPost(x)).join("")
+    },
+}
+
+booktore.rander()
